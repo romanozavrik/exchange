@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Currency;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Wallet;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,42 +20,42 @@ class DatabaseSeeder extends Seeder
         $user1 = User::create([
             'name' => 'John Doe',
             'email' => 'johndoe@example.com',
-            'password' => bcrypt('password'),
+            'password' => Hash::make('secret')
         ]);
 
         $user2 = User::create([
             'name' => 'Jane Smith',
             'email' => 'janesmith@example.com',
-            'password' => bcrypt('password'),
+            'password' => Hash::make('secret123')
         ]);
 
         $usd_wallet1 = Wallet::create([
             'user_id' => $user1->id,
-            'currency' => 'USD',
+            'currency' => Currency::USD,
             'balance' => 100,
         ]);
 
         $uah_wallet1 = Wallet::create([
             'user_id' => $user1->id,
-            'currency' => 'UAH',
+            'currency' => Currency::UAH,
             'balance' => 5000,
         ]);
 
         $usd_wallet2 = Wallet::create([
             'user_id' => $user2->id,
-            'currency' => 'USD',
+            'currency' => Currency::USD,
             'balance' => 10,
         ]);
 
         $uah_wallet2 = Wallet::create([
             'user_id' => $user2->id,
-            'currency' => 'UAH',
+            'currency' => Currency::UAH,
             'balance' => 2500,
         ]);
 
         $eur_wallet2 = Wallet::create([
             'user_id' => $user2->id,
-            'currency' => 'EUR',
+            'currency' => Currency::EUR,
             'balance' => 400,
         ]);
     }

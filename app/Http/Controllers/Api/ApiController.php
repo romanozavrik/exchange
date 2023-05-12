@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Transaction;
+use App\Models\User;
+use App\Models\Wallet;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
@@ -19,6 +20,13 @@ class ApiController extends Controller
             'amount_from' => ['required', 'numeric'],
             'amount_to' => ['required', 'numeric'],
         ]);
+
+        $seller_wallet = Wallet::where('user_id', 'seller_id')
+            ->where('currency', 'currency_from')
+            ->first();
+        if ($seller_wallet->balance < 'amount_to') {
+            return response()->json(['error' => 'Insufficient funds'], 400);
+        }
 
         $transaction = Transaction::create([
             'seller_id' => $request->input('seller_id'),
