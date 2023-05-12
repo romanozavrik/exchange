@@ -2,9 +2,8 @@
 
 namespace App\Enums;
 
-class Currency
-{
-    const USD = 'USD';
-    const EUR = 'EUR';
-    const UAH = 'UAH';
+enum Currency: string {
+    case UAH = 'UAH';
+    case USD = 'USD';
+    case EUR = 'EUR';
 }

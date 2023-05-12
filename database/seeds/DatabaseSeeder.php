@@ -31,31 +31,31 @@ class DatabaseSeeder extends Seeder
 
         $usd_wallet1 = Wallet::create([
             'user_id' => $user1->id,
-            'currency' => Currency::USD,
+            'currency' => Currency::USD->value,
             'balance' => 100,
         ]);
 
         $uah_wallet1 = Wallet::create([
             'user_id' => $user1->id,
-            'currency' => Currency::UAH,
+            'currency' => Currency::UAH->value,
             'balance' => 5000,
         ]);
 
         $usd_wallet2 = Wallet::create([
             'user_id' => $user2->id,
-            'currency' => Currency::USD,
+            'currency' => Currency::USD->value,
             'balance' => 10,
         ]);
 
         $uah_wallet2 = Wallet::create([
             'user_id' => $user2->id,
-            'currency' => Currency::UAH,
+            'currency' => Currency::UAH->value,
             'balance' => 2500,
         ]);
 
         $eur_wallet2 = Wallet::create([
             'user_id' => $user2->id,
-            'currency' => Currency::EUR,
+            'currency' => Currency::EUR->value,
             'balance' => 400,
         ]);
     }
